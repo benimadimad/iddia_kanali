@@ -1,0 +1,54 @@
+{
+  "team": "Trabzonspor",
+  "competition": "UECL",
+  "predictions": {
+    "BATIKAN ABİ": {
+      "Freiburg": "GS",
+      "Kızılyıldız": "OPP",
+      "KuPS": "GS",
+      "Hearts": "GS",
+      "Jablonec": "GS",
+      "CSKA Sofya": "GS"
+    },
+    "ENES": {
+      "Freiburg": "DRAW",
+      "Kızılyıldız": "OPP",
+      "KuPS": "GS",
+      "Hearts": "GS",
+      "Jablonec": "GS",
+      "CSKA Sofya": "DRAW"
+    },
+    "OGÜN": {
+      "Freiburg": "OPP",
+      "Kızılyıldız": "OPP",
+      "KuPS": "GS",
+      "Hearts": "GS",
+      "Jablonec": "GS",
+      "CSKA Sofya": "GS"
+    },
+    "BATU": {
+      "Freiburg": "GS",
+      "Kızılyıldız": "OPP",
+      "KuPS": "GS",
+      "Hearts": "GS",
+      "Jablonec": "GS",
+      "CSKA Sofya": "GS"
+    },
+    "ANIL ABİ": {
+      "Freiburg": "OPP",
+      "Kızılyıldız": "GS",
+      "KuPS": "GS",
+      "Hearts": "GS",
+      "Jablonec": "GS",
+      "CSKA Sofya": "GS"
+    },
+    "GÖKHAN": {
+      "Freiburg": "OPP",
+      "Kızılyıldız": "DRAW",
+      "KuPS": "GS",
+      "Hearts": "GS",
+      "Jablonec": "GS",
+      "CSKA Sofya": "GS"
+    }
+  }
+}

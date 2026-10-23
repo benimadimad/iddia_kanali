@@ -1,0 +1,16 @@
+{
+  "team": "Fenerbahçe",
+  "competition": "CL",
+  "predictions": {
+    "Ogün": {
+      "Liverpool": "OPP",
+      "Atletico Madrid": "DRAW",
+      "Roma": "DRAW",
+      "Aston Villa": "OPP",
+      "Villarreal": "DRAW",
+      "Shakhtar": "DRAW",
+      "Slavia Praha": "GS",
+      "LASK": "GS"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+secrets/
+.vercel/
+.firebase/
+data/*.db
+!data/league.db
+data/*.db-wal
+data/*.db-shm
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.idea/
+.vscode/

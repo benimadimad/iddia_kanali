@@ -1,0 +1,66 @@
+{
+  "team": "Beşiktaş",
+  "competition": "EL",
+  "predictions": {
+    "BATU": {
+      "Marsilya": "OPP",
+      "USG": "GS",
+      "Crystal Palace": "OPP",
+      "Hapoel": "GS",
+      "Bayern Leverkusen": "OPP",
+      "Celtic": "DRAW",
+      "Omonia": "GS",
+      "Hoffenheim": "OPP"
+    },
+    "ENES": {
+      "Marsilya": "OPP",
+      "USG": "GS",
+      "Crystal Palace": "OPP",
+      "Hapoel": "GS",
+      "Bayern Leverkusen": "OPP",
+      "Celtic": "OPP",
+      "Omonia": "DRAW",
+      "Hoffenheim": "OPP"
+    },
+    "OGÜN": {
+      "Marsilya": "OPP",
+      "USG": "DRAW",
+      "Crystal Palace": "OPP",
+      "Hapoel": "GS",
+      "Bayern Leverkusen": "OPP",
+      "Celtic": "GS",
+      "Omonia": "GS",
+      "Hoffenheim": "OPP"
+    },
+    "ANIL ABİ": {
+      "Marsilya": "DRAW",
+      "USG": "GS",
+      "Crystal Palace": "DRAW",
+      "Hapoel": "GS",
+      "Bayern Leverkusen": "OPP",
+      "Celtic": "DRAW",
+      "Omonia": "GS",
+      "Hoffenheim": "DRAW"
+    },
+    "GÖKHAN": {
+      "Marsilya": "GS",
+      "USG": "GS",
+      "Crystal Palace": "DRAW",
+      "Hapoel": "GS",
+      "Bayern Leverkusen": "OPP",
+      "Celtic": "DRAW",
+      "Omonia": "GS",
+      "Hoffenheim": "OPP"
+    },
+    "BATIKAN ABİ": {
+      "Marsilya": "OPP",
+      "USG": "GS",
+      "Crystal Palace": "DRAW",
+      "Hapoel": "GS",
+      "Bayern Leverkusen": "DRAW",
+      "Celtic": "OPP",
+      "Omonia": "GS",
+      "Hoffenheim": "OPP"
+    }
+  }
+}

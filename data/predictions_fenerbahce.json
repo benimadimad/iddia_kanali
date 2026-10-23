@@ -1,0 +1,56 @@
+{
+  "team": "Fenerbahçe",
+  "competition": "CL",
+  "predictions": {
+    "ENES": {
+      "Liverpool": "DRAW",
+      "Atletico Madrid": "OPP",
+      "Roma": "GS",
+      "Aston Villa": "OPP",
+      "Villarreal": "GS",
+      "Shakhtar": "GS",
+      "Slavia Praha": "GS",
+      "LASK": "OPP"
+    },
+    "BATU": {
+      "Liverpool": "OPP",
+      "Atletico Madrid": "OPP",
+      "Roma": "GS",
+      "Aston Villa": "DRAW",
+      "Villarreal": "DRAW",
+      "Shakhtar": "GS",
+      "Slavia Praha": "GS",
+      "LASK": "DRAW"
+    },
+    "GÖKHAN": {
+      "Liverpool": "GS",
+      "Atletico Madrid": "OPP",
+      "Roma": "DRAW",
+      "Aston Villa": "DRAW",
+      "Villarreal": "OPP",
+      "Shakhtar": "OPP",
+      "Slavia Praha": "GS",
+      "LASK": "GS"
+    },
+    "ANIL ABİ": {
+      "Liverpool": "DRAW",
+      "Atletico Madrid": "OPP",
+      "Roma": "GS",
+      "Aston Villa": "DRAW",
+      "Villarreal": "GS",
+      "Shakhtar": "GS",
+      "Slavia Praha": "GS",
+      "LASK": "GS"
+    },
+    "BATIKAN ABİ": {
+      "Liverpool": "OPP",
+      "Atletico Madrid": "OPP",
+      "Roma": "OPP",
+      "Aston Villa": "DRAW",
+      "Villarreal": "GS",
+      "Shakhtar": "GS",
+      "Slavia Praha": "GS",
+      "LASK": "GS"
+    }
+  }
+}

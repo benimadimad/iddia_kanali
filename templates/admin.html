@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="csrf-token" content="{{ csrf_token }}">
+  <title>Yönetici · {{ league_name }}</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <a class="admin-brand" href="/">
+        <span class="admin-mark">11</span>
+        <span><strong>{{ league_name }}</strong><small>Yönetici paneli</small></span>
+      </a>
+      <nav class="admin-nav" aria-label="Yönetici bölümleri">
+        <button class="admin-nav-item is-active" type="button" data-admin-view="predictions">Tahminler</button>
+        <button class="admin-nav-item" type="button" data-admin-view="players">Oyuncular</button>
+        <button class="admin-nav-item" type="button" data-admin-view="scoring">Puanlama</button>
+        <button class="admin-nav-item" type="button" data-admin-view="data">Veri kaynağı</button>
+      </nav>
+      <div class="admin-sidebar-foot">
+        <a href="/" target="_blank" rel="noopener">Herkese açık sayfa ↗</a>
+        <form method="post" action="{{ url_for('admin_logout') }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <button type="submit" class="link-button">Çıkış yap</button>
+        </form>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div>
+          <p class="eyebrow">Lig yönetimi</p>
+          <h1 id="adminTitle">Tahminler</h1>
+        </div>
+        <div class="admin-top-actions">
+          <span class="status-badge {% if not demo %}is-live{% endif %}" id="adminSourceBadge">{{ 'DEMO VERİ' if demo else 'CANLI VERİ' }}</span>
+          <span class="admin-updated" id="adminUpdated"></span>
+        </div>
+      </header>
+
+      <section class="admin-view" data-admin-panel="predictions">
+        <div class="toolbar card">
+          <label class="field">
+            <span>Oyuncu</span>
+            <select id="adminPlayerSelect"></select>
+          </label>
+          <label class="field">
+            <span>Görünüm</span>
+            <select id="adminMatchFilter">
+              <option value="open">Tahmine açık maçlar</option>
+              <option value="all">Tüm maçlar</option>
+            </select>
+          </label>
+          <div class="toolbar-note">
+            <strong id="openMatchCount">0</strong>
+            <span>açık maç</span>
+          </div>
+        </div>
+
+        <div class="admin-hint">
+          Tahminler maç başlama saatinde otomatik kilitlenir. Kaydettiğiniz tahminler herkese açık sayfada maç başlayınca görünür.
+        </div>
+
+        <form id="predictionForm">
+          <div id="predictionEditor" class="prediction-editor"></div>
+          <div class="save-bar">
+            <div>
+              <strong id="dirtyCount">Değişiklik yok</strong>
+              <span>Maç saatine kadar düzenleyebilirsiniz.</span>
+            </div>
+            <button class="primary-button" id="savePredictionsBtn" type="submit" disabled>Değişiklikleri kaydet</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="admin-view is-hidden" data-admin-panel="players">
+        <div class="split-grid">
+          <div class="card">
+            <div class="card-heading">
+              <div><p class="eyebrow">Katılımcılar</p><h2>Oyuncular</h2></div>
+              <span class="muted-count" id="playerCount"></span>
+            </div>
+            <div id="playerList" class="player-admin-list"></div>
+          </div>
+          <div class="card compact-card">
+            <div class="card-heading">
+              <div><p class="eyebrow">Yeni katılımcı</p><h2>Oyuncu ekle</h2></div>
+            </div>
+            <form id="addPlayerForm" class="stack-form">
+              <label class="field"><span>Ad</span><input id="newPlayerName" maxlength="40" required placeholder="Örn. Ahmet"></label>
+              <label class="field"><span>Renk</span><input id="newPlayerColor" type="color" value="#b8f34a"></label>
+              <button class="primary-button" type="submit">Oyuncu ekle</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="admin-view is-hidden" data-admin-panel="scoring">
+        <div class="card scoring-card">
+          <div class="card-heading">
+            <div><p class="eyebrow">Esnek kural motoru</p><h2>Puanlama ayarları</h2></div>
+            <span class="status-badge" id="scoringStatusBadge">Geçici</span>
+          </div>
+          <p class="card-lead">Puanlama kesinleşene kadar “geçici” modda kalır. Değerleri değiştirdiğinizde puan tablosu anında yeniden hesaplanır.</p>
+          <form id="scoringForm" class="scoring-form">
+            <label class="field"><span>Durum</span>
+              <select id="scoringStatus">
+                <option value="provisional">Geçici</option>
+                <option value="final">Kesinleşti</option>
+              </select>
+            </label>
+            <label class="field"><span>Etiket</span><input id="scoringLabel" maxlength="80"></label>
+            <label class="field"><span>Tam skor</span><input id="exactScore" type="number" min="0" max="100" required></label>
+            <label class="field"><span>Doğru sonuç</span><input id="correctOutcome" type="number" min="0" max="100" required></label>
+            <label class="field"><span>Doğru averaj bonusu</span><input id="goalDifference" type="number" min="0" max="100" required></label>
+            <label class="field"><span>Joker çarpanı</span><input id="jokerMultiplier" type="number" min="0" max="100" required></label>
+            <div class="form-actions">
+              <button class="primary-button" type="submit">Puanlamayı kaydet</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="admin-view is-hidden" data-admin-panel="data">
+        <div class="split-grid">
+          <div class="card">
+            <div class="card-heading">
+              <div><p class="eyebrow">Otomasyon</p><h2>Veri kaynağı</h2></div>
+            </div>
+            <div class="sync-status" id="syncStatus"></div>
+            <div class="form-actions">
+              <button class="primary-button" id="syncNowBtn" type="button">Şimdi senkronize et</button>
+            </div>
+            <p class="fine-print">football-data.org ücretsiz katmanında dakikada 10 istek sınırı vardır. Uygulama tek istekle birden fazla ligi çeker ve varsayılan olarak 3 dakikada bir güncellenir.</p>
+          </div>
+          <div class="card compact-card">
+            <div class="card-heading">
+              <div><p class="eyebrow">Kurulum</p><h2>Canlı veriye geçiş</h2></div>
+            </div>
+            <ol class="checklist">
+              <li><code>FOOTBALL_DATA_TOKEN</code> ortam değişkenini tanımlayın.</li>
+              <li><code>DATA_PROVIDER=football-data</code> ayarlayın.</li>
+              <li>Uygulamayı yeniden başlatın.</li>
+              <li>Bu ekrandan “Şimdi senkronize et” deyin.</li>
+            </ol>
+            <div class="warn-box">Demo verisi gerçek maç sonucu değildir. Yayına almadan önce mutlaka canlı veri kaynağına geçin.</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="adminToast" role="status" aria-live="polite"></div>
+  <script src="{{ url_for('static', filename='js/admin.js') }}" defer></script>
+</body>
+</html>

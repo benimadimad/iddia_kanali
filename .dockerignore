@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+data/
+*.db
+*.db-wal
+*.db-shm
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.git/
+.gitignore
+tests/
+*.md
+.pytest_cache/

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sayfa bulunamadı · {{ league_name }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+</head>
+<body>
+  <main class="error-page">
+    <span class="error-code">404</span>
+    <h1>Bu sayfa oyunda değil.</h1>
+    <p>Aradığınız sayfa bulunamadı. Maç merkezine dönüp fikstüre göz atabilirsiniz.</p>
+    <a class="primary-button" href="/">Maç merkezine dön</a>
+  </main>
+</body>
+</html>

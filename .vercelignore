@@ -1,0 +1,18 @@
+# Never send credentials, local state or development artifacts to Vercel.
+.env
+.env.*
+!.env.example
+secrets/
+.git/
+.vercel/
+.venv/
+venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+**/*.pyc
+.pytest_cache/
+tests/
+tools/
+PLAN.md
+PLAN_VERCEL_FIREBASE.md

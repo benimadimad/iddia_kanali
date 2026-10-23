@@ -1,0 +1,66 @@
+{
+  "team": "Galatasaray",
+  "competition": "CL",
+  "predictions": {
+    "BATU": {
+      "Barcelona": "OPP",
+      "PSG": "OPP",
+      "Aston Villa": "DRAW",
+      "Sporting": "GS",
+      "Feyenoord": "GS",
+      "Lille": "DRAW",
+      "Stuttgart": "DRAW",
+      "AEK": "GS"
+    },
+    "ENES": {
+      "Barcelona": "OPP",
+      "PSG": "OPP",
+      "Aston Villa": "OPP",
+      "Sporting": "DRAW",
+      "Feyenoord": "GS",
+      "Lille": "OPP",
+      "Stuttgart": "DRAW",
+      "AEK": "OPP"
+    },
+    "OGÜN": {
+      "Barcelona": "OPP",
+      "PSG": "OPP",
+      "Aston Villa": "OPP",
+      "Sporting": "OPP",
+      "Feyenoord": "GS",
+      "Lille": "DRAW",
+      "Stuttgart": "GS",
+      "AEK": "GS"
+    },
+    "GÖKHAN": {
+      "Barcelona": "OPP",
+      "PSG": "OPP",
+      "Aston Villa": "OPP",
+      "Sporting": "OPP",
+      "Feyenoord": "GS",
+      "Lille": "DRAW",
+      "Stuttgart": "GS",
+      "AEK": "GS"
+    },
+    "ANIL ABİ": {
+      "Barcelona": "OPP",
+      "PSG": "OPP",
+      "Aston Villa": "DRAW",
+      "Sporting": "OPP",
+      "Feyenoord": "GS",
+      "Lille": "DRAW",
+      "Stuttgart": "GS",
+      "AEK": "GS"
+    },
+    "BATIKAN ABİ": {
+      "Barcelona": "OPP",
+      "PSG": "OPP",
+      "Aston Villa": "OPP",
+      "Sporting": "GS",
+      "Feyenoord": "GS",
+      "Lille": "DRAW",
+      "Stuttgart": "GS",
+      "AEK": "GS"
+    }
+  }
+}

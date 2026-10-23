@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="{{ league_name }} — Avrupa futbolu tahmin ligi. Fikstür, canlı skorlar, tahminler ve puan tablosu.">
+  <title>{{ league_name }} · Avrupa Futbolu Tahmin Ligi</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}?v=20261023-12">
+</head>
+<body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+
+  <svg class="svg-sprite" aria-hidden="true">
+    <symbol id="i-ball" viewBox="0 0 24 24"><path d="M12 2.6a9.4 9.4 0 1 0 0 18.8 9.4 9.4 0 0 0 0-18.8Zm0 2.1 3.1 2.3-1.2 3.7h-3.8L8.9 7 12 4.7ZM5.1 10.2l2.8.2 1.2 3.7-2.9 2.1a7.4 7.4 0 0 1-1.1-6Zm3 8.7 2.7-1.9 3.2 2.3-.2 2.4a7.4 7.4 0 0 1-5.7-2.8Zm7.8 2.7-.2-2.4 3.2-2.3 2.7 1.9a7.4 7.4 0 0 1-5.7 2.8Zm6.4-5.1-2.9-2.1 1.2-3.7 2.8-.2a7.4 7.4 0 0 1-1.1 6Z"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M7 2v2.5M17 2v2.5M3.5 9h17M5 4.5h14A1.5 1.5 0 0 1 20.5 6v13A1.5 1.5 0 0 1 19 20.5H5A1.5 1.5 0 0 1 3.5 19V6A1.5 1.5 0 0 1 5 4.5Zm2.5 8h2m2 0h2m2 0h2m-10 4h2m2 0h2m2 0h2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 3h10v3.2c0 3.2-2 5.8-5 6.3-3-.5-5-3.1-5-6.3V3Zm0 2H4v1.5A3.5 3.5 0 0 0 7.5 10M17 5h3v1.5A3.5 3.5 0 0 1 16.5 10M12 12.5V18m-3 3h6m-5-3h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4.5 4.5A2.5 2.5 0 0 1 7 2h12v18H7a2.5 2.5 0 0 0-2.5 2V4.5Zm0 15A2.5 2.5 0 0 1 7 17h12M8 6h7M8 9h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="6" cy="12" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="18" cy="19" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m8.2 10.8 7.6-4.5M8.2 13.2l7.6 4.5" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.1 6.3M20 5v6h-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="m13 2-8 12h6l-1 8 9-13h-6V2Z" fill="currentColor"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M16 5.3a3.2 3.2 0 0 1 0 5.4M17.5 14.5A5.2 5.2 0 0 1 21 19.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  </svg>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="#matches" aria-label="{{ league_name }} ana sayfa">
+          <span class="brand-mark"><svg class="icon"><use href="#i-ball"/></svg><span class="brand-mark-dot"></span></span>
+          <span class="brand-copy">
+            <strong>{{ league_name }}</strong>
+            <small>4 takım · 3 kupa · arkadaş ligi</small>
+          </span>
+        </a>
+
+        <div class="topbar-actions">
+          <span class="demo-badge{% if not demo %} is-hidden{% endif %}" id="demoBadge" title="Demo verisiyle çalışıyor">DEMO</span>
+          <span class="live-pill is-hidden" id="globalLive"><span class="live-dot"></span><span>Canlı</span></span>
+          <button class="icon-btn" id="shareBtn" type="button" title="Bağlantıyı paylaş" aria-label="Bağlantıyı paylaş">
+            <svg class="icon"><use href="#i-share"/></svg>
+          </button>
+          <button class="icon-btn" id="refreshBtn" type="button" title="Verileri yenile" aria-label="Verileri yenile">
+            <svg class="icon"><use href="#i-refresh"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <nav class="tabbar" id="tabbar" aria-label="Ana bölümler">
+      <a class="tab is-active" href="#matches" data-view="matches" aria-current="page">
+        <svg class="icon"><use href="#i-calendar"/></svg><span>Maçlar</span>
+      </a>
+      <a class="tab" href="#standings" data-view="standings">
+        <svg class="icon"><use href="#i-trophy"/></svg><span>Puan Tablosu</span>
+      </a>
+      <a class="tab" href="#predictions" data-view="predictions">
+        <svg class="icon"><use href="#i-target"/></svg><span>Tahminler</span>
+      </a>
+      <a class="tab" href="#results" data-view="results">
+        <svg class="icon"><use href="#i-clock"/></svg><span>Geçmiş</span>
+      </a>
+    </nav>
+
+    <main id="main">
+      <div class="global-notice is-hidden" id="globalNotice" role="status"></div>
+
+      <section class="view" id="view-matches" data-view-panel="matches">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Fikstür &amp; sonuçlar</p>
+            <h1>Maç merkezi</h1>
+          </div>
+          <div class="page-meta" id="updateMeta"></div>
+        </div>
+
+        <div class="date-strip-wrap">
+          <div class="date-strip" id="dateStrip" role="tablist" aria-label="Maç tarihleri"></div>
+        </div>
+
+        <div class="filter-bar">
+          <div class="segmented" id="statusFilters" role="group" aria-label="Maç durumu">
+            <button class="segment is-active" type="button" data-status="all">Tümü</button>
+            <button class="segment" type="button" data-status="live"><span class="live-dot"></span>Canlı</button>
+            <button class="segment" type="button" data-status="upcoming">Yaklaşan</button>
+            <button class="segment" type="button" data-status="finished">Bitti</button>
+          </div>
+          <label class="select-wrap">
+            <span class="sr-only">Lig filtresi</span>
+            <select id="competitionFilter">
+              <option value="all">Tüm ligler</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="matches-layout">
+          <section class="fixture-panel" aria-live="polite">
+            <div id="fixtureList" class="fixture-list">
+              <div class="skeleton-card"></div>
+              <div class="skeleton-card"></div>
+              <div class="skeleton-card"></div>
+            </div>
+          </section>
+          <aside class="sidebar" aria-label="Lig özeti">
+            <section class="side-card" id="miniStandings"></section>
+            <section class="side-card" id="liveCard"></section>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view is-hidden" id="view-standings" data-view-panel="standings">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Genel klasman</p>
+            <h1>Puan tablosu</h1>
+          </div>
+          <div class="page-meta" id="standingsMeta"></div>
+        </div>
+        <div id="standingsContent"></div>
+      </section>
+
+      <section class="view is-hidden" id="view-predictions" data-view-panel="predictions">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Tahmin karnesi</p>
+            <h1>Tahminler</h1>
+          </div>
+          <div class="page-meta" id="predictionsMeta"></div>
+        </div>
+        <div id="predictionsContent"></div>
+      </section>
+
+      <section class="view is-hidden" id="view-results" data-view-panel="results">
+        <div class="page-head">
+          <div>
+            <p class="eyebrow">Oynanan maçlar</p>
+            <h1>Geçmiş sonuçlar</h1>
+          </div>
+          <div class="page-meta" id="resultsMeta"></div>
+        </div>
+        <div id="resultsContent"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <span class="footer-brand">{{ league_name }}</span>
+        <span class="footer-sep">·</span>
+        <span>Arkadaşlar arası tahmin ligi</span>
+      </div>
+      <div class="footer-meta">
+        <span id="sourceLabel">Veri kaynağı</span>
+      </div>
+    </footer>
+  </div>
+
+  <div class="sheet-layer is-hidden" id="sheetLayer" aria-hidden="true">
+    <div class="sheet-backdrop" data-close-sheet></div>
+    <section class="match-sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" tabindex="-1">
+      <div class="sheet-grabber"></div>
+      <button class="sheet-close" type="button" data-close-sheet aria-label="Kapat">
+        <svg class="icon"><use href="#i-close"/></svg>
+      </button>
+      <div id="sheetContent"></div>
+    </section>
+  </div>
+
+  <div class="identity-layer is-hidden" id="identityLayer" aria-hidden="true">
+    <section class="identity-card" role="dialog" aria-modal="true" aria-labelledby="identityTitle" tabindex="-1">
+      <span class="prompt-icon"><svg class="icon"><use href="#i-target"/></svg></span>
+      <p class="eyebrow">Tahminler</p>
+      <h2 id="identityTitle">Kimsin?</h2>
+      <p class="identity-lead">Tahmin karneni açmadan önce adını seç.</p>
+      <div class="player-chips identity-chips" id="identityOptions"></div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <noscript>
+    <div class="noscript">Bu uygulama fikstür ve puan tablosunu göstermek için JavaScript kullanır. Lütfen tarayıcınızda JavaScript'i etkinleştirin.</div>
+  </noscript>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}?v=20261023-12" defer></script>
+</body>
+</html>
